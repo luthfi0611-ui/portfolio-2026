@@ -147,10 +147,17 @@ export default function Footer() {
     { scope: container }
   );
 
-  const toTop = () => {
-    if (window.lenis) window.lenis.scrollTo(0, { duration: 2.2 });
-    else window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+ 
+const toTop = () => {
+  if (window.lenis) {
+    window.lenis.scrollTo(0, { duration: 2.2 });
+  } else {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+};
 
   return (
     <footer

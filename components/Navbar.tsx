@@ -69,25 +69,37 @@ export default function Navbar() {
     setOpen(!open);
   };
 
-  const goTo = (e: React.MouseEvent<HTMLElement>, href: string) => {
-    e.preventDefault();
-    tl.current?.reverse();
-    setOpen(false);
+  
+const goTo = (e: React.MouseEvent<HTMLElement>, href: string) => {
+  e.preventDefault();
 
-    // the footer sits behind the page, so "Contact" = bottom of the page
-    if (href === "#contact") {
-      const bottom = document.documentElement.scrollHeight;
-      if (window.lenis) window.lenis.scrollTo(bottom, { duration: 2 });
-      else window.scrollTo({ top: bottom, behavior: "smooth" });
-      return;
-    }
+  tl.current?.reverse();
+  setOpen(false);
+
+  if (href === "#contact") {
+    const bottom = document.documentElement.scrollHeight;
 
     if (window.lenis) {
-      window.lenis.scrollTo(href, { duration: 1.4 });
+      window.lenis.scrollTo(bottom, { duration: 2 });
     } else {
-      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+      window.scrollTo({
+        top: bottom,
+        behavior: "smooth",
+      });
     }
-  };
+
+    return;
+  }
+
+  if (window.lenis) {
+    window.lenis.scrollTo(href, { duration: 1.4 });
+  } else {
+    document.querySelector(href)?.scrollIntoView({
+      behavior: "smooth",
+    });
+  }
+};
+
 
   return (
     <div ref={root}>
